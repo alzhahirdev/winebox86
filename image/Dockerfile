@@ -29,6 +29,8 @@ RUN apt install -y libc6:armhf box86
 RUN dpkg --add-architecture i386
 
 ## add winehq repo and install wine
+RUN apt update; exit 0;
+RUN apt-add-repository --remove 'deb https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/Ubuntu_18.10_standard ./'
 RUN wget -nc -O /usr/share/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
 RUN wget -nc -P /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/focal/winehq-focal.sources
 RUN apt update; exit 0;
