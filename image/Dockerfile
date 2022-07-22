@@ -2,11 +2,7 @@ FROM ubuntu:20.04
 
 LABEL maintainer="alzhahir"
 
-ENV DEBIAN_FRONTEND noninteractive
-
-## add container user
-RUN useradd -m -d /home/container container
-ENV USER=container HOME=/home/container
+# ENV DEBIAN_FRONTEND noninteractive
 
 ## add armhf architecture
 RUN sudo dpkg --add-architecture armhf
@@ -52,6 +48,10 @@ RUN update-locale lang=en_US.UTF-8 \
  
 ## Test stuff
 # RUN ln -sf /.local/share/Terraria /home/container
+
+## add container user
+RUN useradd -m -d /home/container container
+ENV USER=container HOME=/home/container
 
 WORKDIR /home/container
 COPY ./entrypoint.sh /entrypoint.sh
