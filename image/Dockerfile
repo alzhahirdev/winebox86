@@ -9,9 +9,9 @@ RUN useradd -m -d /home/container container
 ENV USER=container HOME=/home/container
 
 ## check arch
-ARG ARCH = $TARGETPLATFORM
+ARG TARGETPLATFORM
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-RUN arch = $ARCH
+RUN arch = $TARGETPLATFORM
 #RUN arch=$(arch | sed s/aarch64/arm64/ | sed s/x86_64/amd64/ | sed s/armhf/armhf | sed s/i686/i386)
 
 ## install dependencies
