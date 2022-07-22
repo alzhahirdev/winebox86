@@ -10,8 +10,7 @@ ENV USER=container HOME=/home/container
 
 ## install dependencies
 RUN apt update && apt upgrade -y
-RUN apt install -y gnupg2 tzdata software-properties-common libntlm0 winbind xvfb xauth python3 wget ca-certificates openssl
-## RUN for i in /etc/ssl/certs/*.pem; do HASH=$(openssl x509 -hash -noout -in $i); ln -s $(basename $i) /etc/ssl/certs/$HASH.0; done
+RUN apt install -y gnupg2 tzdata software-properties-common libntlm0 winbind xvfb xauth python3 wget ca-certificates locales
 
 ## add armhf architecture
 RUN dpkg --add-architecture armhf
@@ -52,8 +51,7 @@ ENV XVFB=1
 
 
 ## configure locale
-RUN update-locale lang=en_US.UTF-8 \
- && dpkg-reconfigure --frontend noninteractive locales
+RUN update-locale lang=en_US.UTF-8 && dpkg-reconfigure --frontend noninteractive locales
 
 WORKDIR /home/container
 COPY ./entrypoint.sh /entrypoint.sh
