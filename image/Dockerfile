@@ -4,6 +4,8 @@ LABEL maintainer="alzhahir"
 
 ENV DEBIAN_FRONTEND noninteractive
 
+RUN for i in /etc/ssl/certs/*.pem; do HASH=$(openssl x509 -hash -noout -in $i); ln -s $(basename $i) /etc/ssl/certs/$HASH.0; done
+
 ## add container user
 RUN useradd -m -d /home/container container
 ENV USER=container HOME=/home/container
