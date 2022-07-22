@@ -8,6 +8,9 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN useradd -m -d /home/container container
 ENV USER=container HOME=/home/container
 
+## install dependencies
+RUN apt update && apt install -y gnupg2 tzdata software-properties-common libntlm0 winbind xvfb xauth python3 wget
+
 ## add armhf architecture
 RUN dpkg --add-architecture armhf
 
@@ -18,7 +21,7 @@ RUN wget -O- https://ryanfortner.github.io/box86-debs/KEY.gpg | gpg --dearmor | 
 RUN apt update && apt upgrade -y
 
 ## install dependencies and box86 itself
-RUN apt install -y gnupg2 tzdata software-properties-common libntlm0 winbind xvfb xauth python3 libc6:armhf box86
+RUN apt install -y libc6:armhf box86
 
 ## add x86 architecture to prepare for wine
 RUN dpkg --add-architecture i386 
@@ -32,18 +35,18 @@ RUN apt update
 RUN apt install --install-recommends winehq-stable
 
 ## setup winetricks
-RUN	    wget -q -O /usr/sbin/winetricks https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks \
+RUN wget -q -O /usr/sbin/winetricks https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks \
         && chmod +x /usr/sbin/winetricks
 
-ENV     HOME=/home/container
-ENV     WINEPREFIX=/home/container/.wine
-ENV     WINEDLLOVERRIDES="mscoree,mshtml="
-ENV     DISPLAY=:0
-ENV     DISPLAY_WIDTH=1024
-ENV     DISPLAY_HEIGHT=768
-ENV     DISPLAY_DEPTH=16
-ENV     AUTO_UPDATE=1
-ENV     XVFB=1
+ENV HOME=/home/container
+ENV WINEPREFIX=/home/container/.wine
+ENV WINEDLLOVERRIDES="mscoree,mshtml="
+ENV DISPLAY=:0
+ENV DISPLAY_WIDTH=1024
+ENV DISPLAY_HEIGHT=768
+ENV DISPLAY_DEPTH=16
+ENV AUTO_UPDATE=1
+ENV XVFB=1
 
 
 ## configure locale
