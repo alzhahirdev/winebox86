@@ -10,8 +10,8 @@ ENV USER=container HOME=/home/container
 
 ## install dependencies
 RUN apt update && apt upgrade -y
-RUN apt install -y gnupg2 tzdata software-properties-common libntlm0 winbind xvfb xauth python3 wget ca-certificates
-RUN for i in /etc/ssl/certs/*.pem; do HASH=$(openssl x509 -hash -noout -in $i); ln -s $(basename $i) /etc/ssl/certs/$HASH.0; done
+RUN apt install -y gnupg2 tzdata software-properties-common libntlm0 winbind xvfb xauth python3 wget ca-certificates openssl
+## RUN for i in /etc/ssl/certs/*.pem; do HASH=$(openssl x509 -hash -noout -in $i); ln -s $(basename $i) /etc/ssl/certs/$HASH.0; done
 
 ## add armhf architecture
 RUN dpkg --add-architecture armhf
