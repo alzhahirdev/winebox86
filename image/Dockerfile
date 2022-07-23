@@ -32,16 +32,16 @@ RUN sed -i "s/deb h/deb [arch=arm64] h/g" /etc/apt/sources.list
 
 ## add i386's repos
 RUN echo "# i386 repositories" >> /etc/apt/sources.list
-RUN echo "deb [arch=i386] http://ports.ubuntu.com/ubuntu-ports focal main restricted" >> /etc/apt/sources.list
-RUN echo "deb [arch=i386] http://ports.ubuntu.com/ubuntu-ports focal-updates main restricted" >> /etc/apt/sources.list
-RUN echo "deb [arch=i386] http://ports.ubuntu.com/ubuntu-ports focal universe" >> /etc/apt/sources.list
-RUN echo "deb [arch=i386] http://ports.ubuntu.com/ubuntu-ports focal-updates universe" >> /etc/apt/sources.list
-RUN echo "deb [arch=i386] http://ports.ubuntu.com/ubuntu-ports focal multiverse" >> /etc/apt/sources.list
-RUN echo "deb [arch=i386] http://ports.ubuntu.com/ubuntu-ports focal-updates multiverse" >> /etc/apt/sources.list
-RUN echo "deb [arch=i386] http://ports.ubuntu.com/ubuntu-ports focal-backports main restricted universe multiverse" >> /etc/apt/sources.list
-RUN echo "deb [arch=i386] http://ports.ubuntu.com/ubuntu-ports focal-security main restricted" >> /etc/apt/sources.list
-RUN echo "deb [arch=i386] http://ports.ubuntu.com/ubuntu-ports focal-security universe" >> /etc/apt/sources.list
-RUN echo "deb [arch=i386] http://ports.ubuntu.com/ubuntu-ports focal-security multiverse" >> /etc/apt/sources.list
+RUN echo "deb [arch=i386] http://archive.ubuntu.com/ubuntu/ focal main restricted" >> /etc/apt/sources.list
+RUN echo "deb [arch=i386] http://archive.ubuntu.com/ubuntu/ focal-updates main restricted" >> /etc/apt/sources.list
+RUN echo "deb [arch=i386] http://archive.ubuntu.com/ubuntu/ focal universe" >> /etc/apt/sources.list
+RUN echo "deb [arch=i386] http://archive.ubuntu.com/ubuntu/ focal-updates universe" >> /etc/apt/sources.list
+RUN echo "deb [arch=i386] http://archive.ubuntu.com/ubuntu/ focal multiverse" >> /etc/apt/sources.list
+RUN echo "deb [arch=i386] http://archive.ubuntu.com/ubuntu/ focal-updates multiverse" >> /etc/apt/sources.list
+RUN echo "deb [arch=i386] http://archive.ubuntu.com/ubuntu/ focal-backports main restricted universe multiverse" >> /etc/apt/sources.list
+RUN echo "deb [arch=i386] http://security.ubuntu.com/ubuntu/ focal-security main restricted" >> /etc/apt/sources.list
+RUN echo "deb [arch=i386] http://security.ubuntu.com/ubuntu/ focal-security universe" >> /etc/apt/sources.list
+RUN echo "deb [arch=i386] http://security.ubuntu.com/ubuntu/ focal-security multiverse" >> /etc/apt/sources.list
 
 ## add winehq repo and install wine
 RUN apt update; exit 0;
