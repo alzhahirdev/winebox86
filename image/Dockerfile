@@ -10,7 +10,7 @@ ENV USER=container HOME=/home/container
 
 ## install dependencies
 RUN apt update && apt upgrade -y
-RUN apt install -y gnupg2 tzdata software-properties-common libntlm0 winbind xvfb xauth python3 wget ca-certificates locales
+RUN apt install -y gnupg2 tzdata software-properties-common libntlm0 winbind xvfb xauth python3 wget ca-certificates locales apt-transport-https
 
 ## add armhf architecture
 RUN dpkg --add-architecture armhf
@@ -48,7 +48,7 @@ RUN apt update; exit 0;
 RUN apt-add-repository --remove 'deb https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/Ubuntu_20.04_standard ./'
 RUN wget -nc -O /usr/share/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
 RUN wget -nc -P /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/focal/winehq-focal.sources
-RUN apt update && apt upgrade -y; exit 0;
+RUN apt update && apt clean && apt upgrade -y; exit 0;
 RUN apt install -y --install-recommends libncurses5:i386 libncurses6:i386 wine-stable:i386
 
 ## setup winetricks
